@@ -1,0 +1,59 @@
+﻿@model IEnumerable<IO_3_2.Models.Contact>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Avatar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventType)
+        </th>        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (String.IsNullOrWhiteSpace(item.Avatar))
+    {
+        item.Avatar = "~/Images/tales3.jpg";
+    }
+    if (!VirtualPathUtility.IsAppRelative(item.Avatar))
+    {
+        item.Avatar = item.Avatar.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], "~/");
+    }
+    <tr>
+        <td>
+            <img src="@Url.Content(item.Avatar)" alt="Avatar" width="100" />
+            @*@Html.DisplayFor(modelItem => item.Avatar)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventType)
+        </td>       
+        @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Email }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Email }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Email })
+            </td>*@
+    </tr>
+}
+
+</table>
