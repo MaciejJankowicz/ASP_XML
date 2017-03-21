@@ -135,7 +135,7 @@ namespace IO_3_2.Controllers
                         HostingEnvironment.MapPath("~/Uploads"),
                         Path.GetFileName(contact.Avatar.FileName));
                     contact.Avatar.SaveAs(path);
-                    cnt.Avatar = path;
+                    cnt.Avatar = Path.Combine("~/Uploads", Path.GetFileName(contact.Avatar.FileName));
                 }
                 cnt.Email = contact.Email;
                 cnt.FirstName = contact.FirstName;
